@@ -25,7 +25,11 @@ jobs:
 
       - name: Update subtree
         run: |
-          git subtree pull --prefix=Utils https://github.com/JensDerKrueger/Utils.git main --squash -m "Update Utils subtree"
+          if [ -d "Utils" ]; then
+            git subtree pull --prefix=Utils https://github.com/JensDerKrueger/Utils.git main --squash -m "Update Utils subtree"
+          else
+            git subtree add --prefix=Utils https://github.com/JensDerKrueger/Utils.git main --squash -m "Add Utils subtree"
+          fi
 
       - name: Push to default branch
         run: |
