@@ -42,4 +42,5 @@ LatexUtils
 *.ipch
 
 *.xcuserstate
+*xcuserdata
 *.xcworkspace/xcuserdata/
