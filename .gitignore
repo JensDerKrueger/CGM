@@ -38,5 +38,8 @@ LatexUtils
 
 # macOS Files
 .DS_Store
-xcuserdata.vs/
+.vs/
 *.ipch
+
+*.xcuserstate
+*.xcworkspace/xcuserdata/
