@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:00_Color/00 Color.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:01_Raytracing/01 Raytracer.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:02_Texturing/02 Texturing.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:03_HelloGL/03 HelloGL.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:04_Triforce/04 Triforce.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Utils/Utils.xcodeproj">
+   </FileRef>
+</Workspace>
