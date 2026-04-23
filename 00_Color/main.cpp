@@ -15,7 +15,7 @@ public:
     // enter code here that interprets the mouse's
     // x, y position as H ans S (I suggest to set
     // V to 1.0) and converts that tripple to RGB
-    return Vec3{h,s,0.0f};
+    return Vec3{h,s,1.0f};
   }
   
   virtual void init() override {
@@ -38,7 +38,7 @@ public:
   }
     
   virtual void draw() override {
-  //  drawImage(image);
+    drawImage(image);
 
     const Dimensions dim{ glEnv.getFramebufferSize() };
     fe->render(text, dim.aspect(), 0.03f, {0,-0.9f}, Alignment::Center, {0,0,0,1});
