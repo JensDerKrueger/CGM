@@ -8,19 +8,23 @@
 
 class Scene
 {
+private:
 	std::vector<std::shared_ptr<const IntersectableObject>> sceneObjects;
 	Vec3 backgroundColor;
+  bool environment;
 	Mat4 model;
 
 	Vec3 traceLocalPath(const Ray& ray, int maxDepth) const;
 
 public:
 	Scene()
-		: Scene(Vec3{0.5f, 0.5f, 0.5f})
+  : backgroundColor{0.0f,0.0f,0.0f}
+  , environment{true}
 	{}
 
 	Scene(const Vec3& backgroundColor)
 		: backgroundColor(backgroundColor)
+    , environment{false}
 	{ }
 
 	void addObject(std::shared_ptr<const IntersectableObject> object);
@@ -33,5 +37,6 @@ public:
 
 	static Scene genPathTracingScene();
 	static Scene genCornellBox();
+  static Scene genCausticsScene();
 
 };

@@ -49,7 +49,7 @@ public:
 
 		scenes.emplace_back(Scene::genPathTracingScene(), 200);
 		scenes.emplace_back(Scene::genCornellBox(), 5000);
-    scenes.emplace_back(Scene::genCausticsScene(), 5000);
+  //  scenes.emplace_back(Scene::genCausticsScene(), 5000);
 		renderer.emplace(8, pathsPerFrame, scenes[activeSceneIndex].second);
 
     initPathTracing();

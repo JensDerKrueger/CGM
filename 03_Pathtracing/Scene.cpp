@@ -202,31 +202,31 @@ Vec3 Scene::traceLocalPath(const Ray& firstRay, int maxDepth) const {
 }
 
 Scene Scene::genPathTracingScene() {
-	Scene s{Vec3{0.5f, 0.5f, 0.5f}};
+  Scene s;
 
-	Texture checkerboard = Texture::genCheckerboardTexture(2, 2);
-	Texture earth("Earth.png");
+  Texture checkerboard = Texture::genCheckerboardTexture(2, 2);
+  Texture earth("Earth.png");
 
-	Material glass(Vec3{0.35f, 0.55f, 1.0f}, Vec3{0.65f, 0.78f, 1.0f}, 0.0f, 1.52f);
-	s.addObject(std::make_shared<Sphere>(Vec3{0.7f, -0.4f, -2.0f}, 0.9f, glass));
+  Material glass(Vec3{0.35f, 0.55f, 1.0f}, Vec3{0.65f, 0.78f, 1.0f}, 0.0f, 1.52f);
+  s.addObject(std::make_shared<Sphere>(Vec3{0.7f, -0.4f, -2.0f}, 0.9f, glass));
 
-	Material earthMaterial(Vec3{1.0f, 1.0f, 1.0f}, Vec3{}, 1.0f, std::nullopt, earth);
-	s.addObject(std::make_shared<Sphere>(Vec3{-0.9f, -0.1f, -2.2f}, 0.6f, earthMaterial, Vec3{-90.0f, 0.0f, -90.0f}));
+  Material earthMaterial(Vec3{1.0f, 1.0f, 1.0f}, Vec3{}, 1.0f, std::nullopt, earth);
+  s.addObject(std::make_shared<Sphere>(Vec3{-0.9f, -0.1f, -2.2f}, 0.6f, earthMaterial, Vec3{-90.0f, 0.0f, -90.0f}));
 
-	Material redDiffuse(Vec3{0.95f, 0.08f, 0.04f});
-	s.addObject(std::make_shared<Sphere>(Vec3{2.15f, -0.95f, -3.35f}, 0.55f, redDiffuse));
+  Material redDiffuse(Vec3{0.95f, 0.08f, 0.04f});
+  s.addObject(std::make_shared<Sphere>(Vec3{2.15f, -0.95f, -3.35f}, 0.55f, redDiffuse));
 
-	Material mirror(Vec3{1.0f, 0.9f, 0.1f}, Vec3{1.0f, 0.85f, 0.15f}, 0.0f);
-	s.addObject(std::make_shared<Sphere>(Vec3{0.0f, 4.0f, -8.0f}, 3.9f, mirror, Vec3{-60.0f, 0.0f, -90.0f}));
+  Material mirror(Vec3{1.0f, 0.9f, 0.1f}, Vec3{1.0f, 0.85f, 0.15f}, 0.0f);
+  s.addObject(std::make_shared<Sphere>(Vec3{0.0f, 4.0f, -8.0f}, 3.9f, mirror, Vec3{-60.0f, 0.0f, -90.0f}));
 
-	Material floor(Vec3{0.75f, 0.75f, 0.75f}, Vec3{}, 1.0f, std::nullopt, checkerboard);
-	s.addObject(std::make_shared<Plane>(Vec3{0.0f, 1.0f, 0.0f}, 1.5f, floor));
+  Material floor(Vec3{0.75f, 0.75f, 0.75f}, Vec3{}, 1.0f, std::nullopt, checkerboard);
+  s.addObject(std::make_shared<Plane>(Vec3{0.0f, 1.0f, 0.0f}, 1.5f, floor));
 
-	return s;
+  return s;
 }
 
 Scene Scene::genCornellBox() {
-  Scene s{Vec3{0.5f, 0.5f, 0.5f}};
+  Scene s{Vec3{0.0f, 0.0f, 0.0f}};
 
   const Material whiteDiffuse{Vec3{1.0f, 1.0f, 1.0f}};
   const Material redDiffuse{Vec3{0.75f, 0.08f, 0.04f}};
@@ -245,5 +245,27 @@ Scene Scene::genCornellBox() {
   s.addObject(std::make_shared<Sphere>(Vec3{-0.55f, -0.72f, -2.15f}, 0.48f, mirror));
   s.addObject(std::make_shared<Sphere>(Vec3{0.55f, -0.78f, -1.7f}, 0.42f, glass));
 
+  return s;
+}
+
+
+Scene Scene::genCausticsScene() {
+  Scene s{Vec3{0.0f, 0.0f, 0.0f}};
+
+  const Material grayDiffuse{Vec3{0.5f, 0.5f, 0.5f}};
+  const Material glass{Vec3{1.0f, 1.0f, 1.0f}, Vec3{1.0f, 1.0f, 1.0f}, 0.0f, 1.52f};
+  const Material redGlass{Vec3{1.0f, 0.0f, 0.0f}, Vec3{1.0f, 0.0f, 0.0f}, 0.1f, 1.52f};
+  const Material greenGlass{Vec3{0.0f, 1.0f, 0.0f}, Vec3{0.0f, 1.0f, 0.0f}, 0.1f, 1.52f};
+  const Material blueGlass{Vec3{0.0f, 0.0f, 1.0f}, Vec3{0.0f, 0.0f, 1.0f}, 0.1f, 1.52f};
+  const Material light{Vec3{1.0f, 0.96f, 0.82f}, Vec3{}, 1.0f, std::nullopt, std::nullopt, Vec3{18.0f, 16.0f, 12.0f}};
+
+  s.addObject(std::make_shared<Sphere>(Vec3{0.0f, 6.0f, -1.0f}, 1.0f, light));
+  s.addObject(std::make_shared<Sphere>(Vec3{0.55f, -0.18f, -1.7f}, 0.42f, greenGlass));
+  s.addObject(std::make_shared<Sphere>(Vec3{-0.85f, -0.48f, -1.7f}, 0.42f, glass));
+  s.addObject(std::make_shared<Sphere>(Vec3{0.0f, 0.6f, -1.7f}, 0.42f, redGlass));
+  s.addObject(std::make_shared<Sphere>(Vec3{0.0f, 1.2f, -4.7f}, 1.42f, blueGlass));
+  s.addObject(std::make_shared<Sphere>(Vec3{0.0f, -0.18f, -0.7f}, 0.42f, glass));
+
+  s.addObject(std::make_shared<Plane>(Vec3{0.0f, 1.0f, 0.0f}, 1.25f, grayDiffuse));
   return s;
 }
