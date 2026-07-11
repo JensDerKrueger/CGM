@@ -16,12 +16,11 @@ WebAssembly, Visual Studio, and Xcode build support where applicable.
 
 ## Repository Structure
 
-- `00_Color` to `16_TriangleRasterization`: individual exercise projects
+- Numbered exercise directories contain the individual exercise projects
 - `Utils`: shared teaching framework used by the exercises
 - `VS`: Visual Studio workspace files
 - `CG.xcworkspace`: Xcode workspace
 - `makefile`: command-line build entry point for native and WebAssembly builds
-- `snippet.js` and `solution.css`: shared files for solution webpages
 
 Each exercise directory is intended to be understandable on its own, while the
 shared code in `Utils` keeps window creation, OpenGL setup, image handling,
