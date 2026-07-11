@@ -1,13 +1,10 @@
 #include <GLApp.h>
 #include <ArcBall.h>
 #include <FontRenderer.h>
+#include <BackgroundTask.h>
 #include <cmath>
 #include <cstdint>
 #include <sstream>
-#ifndef __EMSCRIPTEN__
-#include <mutex>
-#include <thread>
-#endif
 #include <vector>
 #include "Scene.h"
 #include "Camera.h"
@@ -33,14 +30,7 @@ public:
 	bool mouseDragActive{false};
 	bool showPreview{true};
 	bool photonEmissionFinished{false};
-	bool renderRequested{false};
-#ifndef __EMSCRIPTEN__
-	std::mutex renderMutex;
-	bool renderRunning{false};
-	bool renderReady{false};
-	uint64_t renderGeneration{0};
-	Image renderedImage{600,600};
-#endif
+	BackgroundTask<Image> renderTask;
 
 	MyGLApp() : GLApp{ 600,600,1,"PhotonMapping" } {}
 
@@ -67,13 +57,13 @@ public:
 		arcBall.setWindowSize(Vec2ui{winDim.width, winDim.height});
 	}
 
-	Image render(Scene scene,
-	             Camera camera,
-	             const std::vector<Photon>& photons,
-	             const PhotonMapper::PhotonGrid& photonGrid,
-	             int depth,
-	             uint32_t width,
-	             uint32_t height) {
+	static Image render(Scene scene,
+	                    Camera camera,
+	                    const std::vector<Photon>& photons,
+	                    const PhotonMapper::PhotonGrid& photonGrid,
+	                    int depth,
+	                    uint32_t width,
+	                    uint32_t height) {
 		Image result{width, height};
 		PhotonMapper renderer(depth, 9);
 		renderer.setCamera(camera);
@@ -117,16 +107,8 @@ public:
 
 	void requestRender()
 	{
-#ifndef __EMSCRIPTEN__
-		std::lock_guard<std::mutex> lock(renderMutex);
-		++renderGeneration;
-		renderRequested = true;
-		renderReady = false;
+		renderTask.request();
 		showPreview = true;
-#else
-		renderRequested = true;
-		showPreview = true;
-#endif
 	}
 
 	void restartPhotonEmission()
@@ -135,80 +117,31 @@ public:
 		photonPointData.clear();
 		photonMapper.setScene(scene);
 		photonMapper.preparePhotonEmission(TARGET_PHOTON_COUNT);
-#ifndef __EMSCRIPTEN__
-		std::lock_guard<std::mutex> lock(renderMutex);
-		++renderGeneration;
-		renderRequested = false;
-		renderReady = false;
+		renderTask.cancel();
 		showPreview = true;
-#else
-		renderRequested = false;
-		showPreview = true;
-#endif
 	}
 
 	void startRenderIfNeeded()
 	{
-#ifndef __EMSCRIPTEN__
-		Scene sceneToRender;
-		Camera cameraToRender;
-		std::vector<Photon> photonsToRender;
-		PhotonMapper::PhotonGrid photonGridToRender;
-		uint32_t width = image.width;
-		uint32_t height = image.height;
-		uint64_t generation = 0;
-
-		{
-			std::lock_guard<std::mutex> lock(renderMutex);
-			if (renderRunning || !renderRequested)
-				return;
-
-			renderRunning = true;
-			renderRequested = false;
-			generation = renderGeneration;
-			sceneToRender = scene;
-			cameraToRender = camera;
-			photonsToRender = photonMapper.getPhotons();
-			photonGridToRender = photonMapper.getPhotonGrid();
-			width = image.width;
-			height = image.height;
-		}
-
-		std::thread([this, sceneToRender, cameraToRender, photonsToRender, photonGridToRender, generation, width, height]() {
-			Image result = render(sceneToRender, cameraToRender, photonsToRender, photonGridToRender, 5, width, height);
-
-			std::lock_guard<std::mutex> lock(renderMutex);
-			if (generation == renderGeneration)
-			{
-				renderedImage = std::move(result);
-				renderReady = true;
-			}
-			renderRunning = false;
-		}).detach();
-#else
-		if (!renderRequested || mouseDragActive)
+		if (mouseDragActive || !renderTask.canStart())
 			return;
 
-		renderRequested = false;
 		const std::vector<Photon> photonsToRender = photonMapper.getPhotons();
 		const PhotonMapper::PhotonGrid photonGridToRender = photonMapper.getPhotonGrid();
-		image = render(scene, camera, photonsToRender, photonGridToRender, 5, image.width, image.height);
-		showPreview = false;
-#endif
+		const Scene sceneToRender = scene;
+		const Camera cameraToRender = camera;
+		const uint32_t width = image.width;
+		const uint32_t height = image.height;
+
+		renderTask.start([sceneToRender, cameraToRender, photonsToRender, photonGridToRender, width, height]() {
+			return render(sceneToRender, cameraToRender, photonsToRender, photonGridToRender, 5, width, height);
+		});
 	}
 
 	void collectRenderResult()
 	{
-#ifndef __EMSCRIPTEN__
-		std::lock_guard<std::mutex> lock(renderMutex);
-		if (!renderReady)
-			return;
-
-		image = std::move(renderedImage);
-
-		renderReady = false;
-		showPreview = false;
-#endif
+		if (renderTask.takeResult(image))
+			showPreview = false;
 	}
 
 	void updatePreviewLight()
@@ -249,6 +182,7 @@ public:
 				requestRender();
 		}
 		startRenderIfNeeded();
+		collectRenderResult();
 
 		if (showPreview)
 		{
