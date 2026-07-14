@@ -38,6 +38,9 @@
       location = "group:12_Sampling/12 Sampling.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:13_ImageCompression/13 ImageCompression.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Utils/Utils.xcodeproj">
    </FileRef>
 </Workspace>

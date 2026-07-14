@@ -1,0 +1,257 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		120000000000000000000001 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000002 /* main.cpp */; };
+		120000000000000000000003 /* libUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 120000000000000000000004 /* libUtils.a */; };
+		120000000000000000000013 /* JPEGCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000014 /* JPEGCodec.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		120000000000000000000002 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		120000000000000000000004 /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		120000000000000000000005 /* 13 ImageCompression */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "13 ImageCompression"; sourceTree = BUILT_PRODUCTS_DIR; };
+		120000000000000000000014 /* JPEGCodec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JPEGCodec.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		120000000000000000000015 /* JPEGCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPEGCodec.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		120000000000000000000006 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				120000000000000000000003 /* libUtils.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		120000000000000000000007 = {
+			isa = PBXGroup;
+			children = (
+				120000000000000000000002 /* main.cpp */,
+				120000000000000000000014 /* JPEGCodec.cpp */,
+				120000000000000000000015 /* JPEGCodec.h */,
+				120000000000000000000008 /* Frameworks */,
+				120000000000000000000009 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		120000000000000000000008 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				120000000000000000000004 /* libUtils.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		120000000000000000000009 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				120000000000000000000005 /* 13 ImageCompression */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		12000000000000000000000A /* 13 ImageCompression */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12000000000000000000000B /* Build configuration list for PBXNativeTarget "13 ImageCompression" */;
+			buildPhases = (
+				12000000000000000000000C /* Sources */,
+				120000000000000000000006 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "13 ImageCompression";
+			productName = "13 ImageCompression";
+			productReference = 120000000000000000000005 /* 13 ImageCompression */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		12000000000000000000000D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					12000000000000000000000A = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 12000000000000000000000E /* Build configuration list for PBXProject "13 ImageCompression" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 120000000000000000000007;
+			productRefGroup = 120000000000000000000009 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				12000000000000000000000A /* 13 ImageCompression */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		12000000000000000000000C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				120000000000000000000001 /* main.cpp in Sources */,
+				120000000000000000000013 /* JPEGCodec.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		12000000000000000000000F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_SHADOW = NO;
+				HEADER_SEARCH_PATHS = (
+					../Utils,
+					/usr/local/include,
+					/opt/homebrew/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/opt/homebrew/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		120000000000000000000010 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_WARN_SHADOW = NO;
+				HEADER_SEARCH_PATHS = (
+					../Utils,
+					/usr/local/include,
+					/opt/homebrew/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/opt/homebrew/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		120000000000000000000011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_WARN_SHADOW = NO;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					../Utils,
+					/opt/homebrew/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/opt/homebrew/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-lglfw",
+					"-lGLEW",
+					"-framework",
+					OpenGL,
+					"-L../Utils",
+					"-lutils",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		120000000000000000000012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_WARN_SHADOW = NO;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					../Utils,
+					/opt/homebrew/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/opt/homebrew/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-lglfw",
+					"-lGLEW",
+					"-framework",
+					OpenGL,
+					"-L../Utils",
+					"-lutils",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		12000000000000000000000E /* Build configuration list for PBXProject "13 ImageCompression" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12000000000000000000000F /* Debug */,
+				120000000000000000000010 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		12000000000000000000000B /* Build configuration list for PBXNativeTarget "13 ImageCompression" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120000000000000000000011 /* Debug */,
+				120000000000000000000012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 12000000000000000000000D /* Project object */;
+}
