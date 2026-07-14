@@ -90,3 +90,12 @@ playground.xcworkspace
 *.local
 *.env
 *.env.*
+
+# Visual Studio generated files
+*.vcxproj.user
+**/VS/bin/
+**/VS/tmp/
+**/VS/x64/
+**/VS/*/x64/
+**/x64/Debug/
+**/x64/Release/

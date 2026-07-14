@@ -19,6 +19,8 @@
 		568697212C2D4CC400201D4F /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 568697152C2D4CC400201D4F /* Sphere.cpp */; };
 		568697222C2D4CC400201D4F /* Intersection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 568697162C2D4CC400201D4F /* Intersection.cpp */; };
 		568697232C2D4CC400201D4F /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 568697172C2D4CC400201D4F /* Material.cpp */; };
+		56A10B032F60010100BADD10 /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56A10B012F60010100BADD10 /* Triangle.cpp */; };
+		56A10B052F60010200BADD10 /* bunny.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 56A10B042F60010200BADD10 /* bunny.obj */; };
 		56B0B1012F50010100FAD236 /* helvetica_neue.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 56B0B0FF2F50010100FAD236 /* helvetica_neue.bmp */; };
 		56B0B1022F50010100FAD236 /* helvetica_neue.pos in CopyFiles */ = {isa = PBXBuildFile; fileRef = 56B0B1002F50010100FAD236 /* helvetica_neue.pos */; };
 /* End PBXBuildFile section */
@@ -32,6 +34,7 @@
 			files = (
 				56B0B1012F50010100FAD236 /* helvetica_neue.bmp in CopyFiles */,
 				56B0B1022F50010100FAD236 /* helvetica_neue.pos in CopyFiles */,
+				56A10B052F60010200BADD10 /* bunny.obj in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,10 +64,13 @@
 		568697172C2D4CC400201D4F /* Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Material.cpp; sourceTree = "<group>"; };
 		568697182C2D4CC400201D4F /* IntersectableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntersectableObject.h; sourceTree = "<group>"; };
 		568697192C2D4CC400201D4F /* LightSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightSource.h; sourceTree = "<group>"; };
-		56A708012F00010100000001 /* Triangulate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triangulate.h; sourceTree = "<group>"; };
+		56A10B002F60010100BADD10 /* AABB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABB.h; sourceTree = "<group>"; };
+		56A10B012F60010100BADD10 /* Triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Triangle.cpp; sourceTree = "<group>"; };
+		56A10B022F60010100BADD10 /* Triangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triangle.h; sourceTree = "<group>"; };
+		56A10B042F60010200BADD10 /* bunny.obj */ = {isa = PBXFileReference; lastKnownFileType = text; name = bunny.obj; path = Datasets/bunny.obj; sourceTree = "<group>"; };
 		56B0B0FF2F50010100FAD236 /* helvetica_neue.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = helvetica_neue.bmp; path = Datasets/helvetica_neue.bmp; sourceTree = "<group>"; };
 		56B0B1002F50010100FAD236 /* helvetica_neue.pos */ = {isa = PBXFileReference; lastKnownFileType = text; name = helvetica_neue.pos; path = Datasets/helvetica_neue.pos; sourceTree = "<group>"; };
-		A231F0FF25EAF61A00CBFC23 /* 01 Raytracing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "01 Raytracing"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A231F0FF25EAF61A00CBFC23 /* 02 BVH */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "02 BVH"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,7 @@
 		560A43732AA9A40400DB0F92 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				56A10B002F60010100BADD10 /* AABB.h */,
 				568696F82C2D4BE900201D4F /* main.cpp */,
 				568696F72C2D4BE900201D4F /* Material.h */,
 				568697062C2D4CC400201D4F /* Camera.cpp */,
@@ -104,7 +111,9 @@
 				568697082C2D4CC400201D4F /* Scene.h */,
 				568697152C2D4CC400201D4F /* Sphere.cpp */,
 				568697132C2D4CC400201D4F /* Sphere.h */,
-				56A708012F00010100000001 /* Triangulate.h */,
+				56A10B012F60010100BADD10 /* Triangle.cpp */,
+				56A10B022F60010100BADD10 /* Triangle.h */,
+				56A10B042F60010200BADD10 /* bunny.obj */,
 				56B0B0FF2F50010100FAD236 /* helvetica_neue.bmp */,
 				56B0B1002F50010100FAD236 /* helvetica_neue.pos */,
 			);
@@ -131,7 +140,7 @@
 		A231F10025EAF61A00CBFC23 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A231F0FF25EAF61A00CBFC23 /* 01 Raytracing */,
+				A231F0FF25EAF61A00CBFC23 /* 02 BVH */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,9 +148,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A231F0FE25EAF61A00CBFC23 /* 01 Raytracing */ = {
+		A231F0FE25EAF61A00CBFC23 /* 02 BVH */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A231F10625EAF61A00CBFC23 /* Build configuration list for PBXNativeTarget "01 Raytracing" */;
+			buildConfigurationList = A231F10625EAF61A00CBFC23 /* Build configuration list for PBXNativeTarget "02 BVH" */;
 			buildPhases = (
 				A231F0FB25EAF61A00CBFC23 /* Sources */,
 				A231F0FC25EAF61A00CBFC23 /* Frameworks */,
@@ -151,9 +160,9 @@
 			);
 			dependencies = (
 			);
-			name = "01 Raytracing";
-			productName = "01 Raytracing";
-			productReference = A231F0FF25EAF61A00CBFC23 /* 01 Raytracing */;
+			name = "02 BVH";
+			productName = "02 BVH";
+			productReference = A231F0FF25EAF61A00CBFC23 /* 02 BVH */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -170,7 +179,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A231F0FA25EAF61A00CBFC23 /* Build configuration list for PBXProject "08 Raytracer" */;
+			buildConfigurationList = A231F0FA25EAF61A00CBFC23 /* Build configuration list for PBXProject "02 BVH" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -183,7 +192,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A231F0FE25EAF61A00CBFC23 /* 01 Raytracing */,
+				A231F0FE25EAF61A00CBFC23 /* 02 BVH */,
 			);
 		};
 /* End PBXProject section */
@@ -203,6 +212,7 @@
 				5686971F2C2D4CC400201D4F /* PointLight.cpp in Sources */,
 				5686971D2C2D4CC400201D4F /* Scene.cpp in Sources */,
 				568697222C2D4CC400201D4F /* Intersection.cpp in Sources */,
+				56A10B032F60010100BADD10 /* Triangle.cpp in Sources */,
 				568697032C2D4BEA00201D4F /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,7 +472,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A231F0FA25EAF61A00CBFC23 /* Build configuration list for PBXProject "08 Raytracer" */ = {
+		A231F0FA25EAF61A00CBFC23 /* Build configuration list for PBXProject "02 BVH" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A231F10425EAF61A00CBFC23 /* Debug */,
@@ -471,7 +481,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A231F10625EAF61A00CBFC23 /* Build configuration list for PBXNativeTarget "01 Raytracing" */ = {
+		A231F10625EAF61A00CBFC23 /* Build configuration list for PBXNativeTarget "02 BVH" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A231F10725EAF61A00CBFC23 /* Debug */,

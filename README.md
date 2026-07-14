@@ -9,7 +9,7 @@ Master Course taught by the Computer Graphics and Visualization Group at the
 Computer Science Department of the University of Duisburg-Essen.
 
 The exercises cover central topics from the course, including rasterization,
-ray tracing, path tracing, volume rendering, radiosity, photon mapping,
+sampling, ray tracing, path tracing, volume rendering, radiosity, photon mapping,
 acceleration structures, deferred shading, shadows, and screen-space effects.
 Most folders contain a self-contained exercise project together with native,
 WebAssembly, Visual Studio, and Xcode build support where applicable.

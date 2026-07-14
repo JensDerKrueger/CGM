@@ -166,7 +166,7 @@
 			dependencies = (
 			);
 			name = "03 Pathtracing";
-			productName = Pathtracing;
+			productName = "03 Pathtracing";
 			productReference = A231F0FF25EAF61A00CBFC23 /* 03 Pathtracing */;
 			productType = "com.apple.product-type.tool";
 		};
