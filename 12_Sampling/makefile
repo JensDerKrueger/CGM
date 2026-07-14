@@ -19,7 +19,7 @@ else
 endif
 
 # Project sources
-SRC = main.cpp
+SRC = main.cpp SignalGenerator.cpp
 OBJ = $(addprefix $(OBJDIR)/,$(SRC:.cpp=.o))
 
 TARGET = sampling

@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		120000000000000000000001 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000002 /* main.cpp */; };
 		120000000000000000000003 /* libUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 120000000000000000000004 /* libUtils.a */; };
+		120000000000000000000013 /* SignalGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000014 /* SignalGenerator.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		120000000000000000000002 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		120000000000000000000004 /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		120000000000000000000005 /* 12 Sampling */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "12 Sampling"; sourceTree = BUILT_PRODUCTS_DIR; };
+		120000000000000000000014 /* SignalGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SignalGenerator.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		120000000000000000000015 /* SignalGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignalGenerator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +36,8 @@
 			isa = PBXGroup;
 			children = (
 				120000000000000000000002 /* main.cpp */,
+				120000000000000000000014 /* SignalGenerator.cpp */,
+				120000000000000000000015 /* SignalGenerator.h */,
 				120000000000000000000008 /* Frameworks */,
 				120000000000000000000009 /* Products */,
 			);
@@ -111,6 +116,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				120000000000000000000001 /* main.cpp in Sources */,
+				120000000000000000000013 /* SignalGenerator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
