@@ -14,11 +14,15 @@ enum class ChromaMode {
   YCbCr420
 };
 
+constexpr int chromaModeCount = 3;
+
 enum class QuantizationPreset {
   JPEGStandard,
   Flat,
   HighFrequency
 };
+
+constexpr int quantizationPresetCount = 3;
 
 struct CompressionResult {
   Image reconstructed;

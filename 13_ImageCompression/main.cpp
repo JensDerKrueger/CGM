@@ -1,4 +1,5 @@
 #include <GLApp.h>
+#include <FontRenderer.h>
 #include <Image.h>
 #include <Vec2.h>
 #include <Vec3.h>
@@ -10,7 +11,7 @@
 #include <cmath>
 #include <cstdint>
 #include <iomanip>
-#include <iostream>
+#include <memory>
 #include <sstream>
 #include <string>
 
@@ -77,6 +78,17 @@ std::string byteCountString(const size_t bytes) {
   return stream.str();
 }
 
+std::string ratioString(const size_t originalBytes, const size_t compressedBytes) {
+  if (compressedBytes == 0) {
+    return "n/a";
+  }
+
+  std::ostringstream stream;
+  stream << std::fixed << std::setprecision(1)
+         << (double(originalBytes) / double(compressedBytes)) << ":1";
+  return stream.str();
+}
+
 } // namespace
 
 class MyGLApp : public GLApp {
@@ -84,6 +96,8 @@ public:
   Image sourceImage{createDemoImage()};
   Image reconstructedImage{sourceWidth, sourceHeight, 3};
   JPEG::CompressionResult compressionResult;
+  FontRenderer fontRenderer{"helvetica_neue.bmp", "helvetica_neue.pos"};
+  std::shared_ptr<FontEngine> fontEngine{nullptr};
   int quality{70};
   JPEG::ChromaMode chromaMode{JPEG::ChromaMode::YCbCr420};
   JPEG::QuantizationPreset quantizationPreset{JPEG::QuantizationPreset::JPEGStandard};
@@ -94,6 +108,7 @@ public:
 
   virtual void init() override {
     setBackground(0.90f, 0.90f, 0.86f, 1.0f);
+    fontEngine = fontRenderer.generateFontEngine();
     recompress();
   }
 
@@ -103,60 +118,55 @@ public:
                                             chromaMode,
                                             quantizationPreset);
     reconstructedImage = compressionResult.reconstructed;
-    updateTitle();
-  }
-
-  void updateTitle() {
-    std::ostringstream title;
-    title << "Exercise 13 - Image Compression | Q " << quality
-          << " | " << JPEG::chromaModeName(chromaMode)
-          << " | " << JPEG::quantizationPresetName(quantizationPreset)
-          << " | " << byteCountString(compressionResult.jpegBytes.size());
-    glEnv.setTitle(title.str());
   }
 
   void saveCurrentJPEG() const {
-#ifndef __EMSCRIPTEN__
     std::ostringstream filename;
     filename << "compressed_q" << quality << "_"
              << JPEG::chromaModeName(chromaMode) << ".jpg";
     std::string safeFilename = filename.str();
     std::replace(safeFilename.begin(), safeFilename.end(), ':', '_');
     JPEG::saveJPEG(safeFilename, compressionResult.jpegBytes);
-#endif
+  }
+
+  size_t uncompressedByteCount() const {
+    return size_t(sourceImage.width) * sourceImage.height * sourceImage.componentCount;
+  }
+
+  std::string statusText() const {
+    std::ostringstream stream;
+    stream << "Q " << quality
+           << "  chroma " << JPEG::chromaModeName(chromaMode)
+           << "  " << JPEG::quantizationPresetName(quantizationPreset)
+           << "  " << byteCountString(compressionResult.jpegBytes.size())
+           << "  compression " << ratioString(uncompressedByteCount(),
+                                             compressionResult.jpegBytes.size());
+    return stream.str();
   }
 
   virtual void draw() override {
-    drawImage(sourceImage, Vec2{-0.98f, -0.84f}, Vec2{-0.02f, 0.84f});
-    drawImage(reconstructedImage, Vec2{0.02f, -0.84f}, Vec2{0.98f, 0.84f});
+    drawImage(sourceImage, Vec2{-0.98f, -0.70f}, Vec2{-0.02f, 0.88f});
+    drawImage(reconstructedImage, Vec2{0.02f, -0.70f}, Vec2{0.98f, 0.88f});
+
+    if (fontEngine) {
+      fontEngine->render(statusText(),
+                         getAspect(),
+                         0.04f,
+                         Vec2{0.0f, -0.93f},
+                         Alignment::Center,
+                         Vec4{0.05f, 0.05f, 0.05f, 0.95f});
+    }
   }
 
   void cycleChromaMode() {
-    switch (chromaMode) {
-      case JPEG::ChromaMode::YCbCr444:
-        chromaMode = JPEG::ChromaMode::YCbCr422;
-        break;
-      case JPEG::ChromaMode::YCbCr422:
-        chromaMode = JPEG::ChromaMode::YCbCr420;
-        break;
-      case JPEG::ChromaMode::YCbCr420:
-        chromaMode = JPEG::ChromaMode::YCbCr444;
-        break;
-    }
+    const int nextMode = (static_cast<int>(chromaMode) + 1) % JPEG::chromaModeCount;
+    chromaMode = static_cast<JPEG::ChromaMode>(nextMode);
   }
 
   void cycleQuantizationPreset() {
-    switch (quantizationPreset) {
-      case JPEG::QuantizationPreset::JPEGStandard:
-        quantizationPreset = JPEG::QuantizationPreset::Flat;
-        break;
-      case JPEG::QuantizationPreset::Flat:
-        quantizationPreset = JPEG::QuantizationPreset::HighFrequency;
-        break;
-      case JPEG::QuantizationPreset::HighFrequency:
-        quantizationPreset = JPEG::QuantizationPreset::JPEGStandard;
-        break;
-    }
+    const int nextPreset =
+      (static_cast<int>(quantizationPreset) + 1) % JPEG::quantizationPresetCount;
+    quantizationPreset = static_cast<JPEG::QuantizationPreset>(nextPreset);
   }
 
   virtual void keyboard(int key, int scancode, int action, int mods) override {
@@ -197,22 +207,7 @@ public:
   }
 };
 
-int main(int argc, char** argv) {
-  if (argc > 1 && std::string(argv[1]) == "--save") {
-    const Image source = createDemoImage();
-    const JPEG::CompressionResult result =
-      JPEG::compressImage(source, 70,
-                          JPEG::ChromaMode::YCbCr420,
-                          JPEG::QuantizationPreset::JPEGStandard);
-    const std::string filename = "compressed_q70_4_2_0.jpg";
-    if (!JPEG::saveJPEG(filename, result.jpegBytes)) {
-      std::cerr << "Could not save " << filename << "\n";
-      return EXIT_FAILURE;
-    }
-    std::cout << "Saved " << filename << " (" << result.jpegBytes.size() << " bytes)\n";
-    return EXIT_SUCCESS;
-  }
-
+int main() {
   MyGLApp myApp;
   myApp.run();
   return EXIT_SUCCESS;

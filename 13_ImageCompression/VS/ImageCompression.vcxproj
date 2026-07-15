@@ -100,6 +100,10 @@
       <AdditionalLibraryDirectories>../../VS/lib/Win32;$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>utils.lib;opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y /i "$(ProjectDir)..\Datasets\*.*" "$(OutDir)\"
+xcopy /y /i "$(ProjectDir)..\Datasets\*.*" "$(ProjectDir)\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -120,6 +124,10 @@
       <AdditionalLibraryDirectories>../../VS/lib/Win32;$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>utils.lib;opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y /i "$(ProjectDir)..\Datasets\*.*" "$(OutDir)\"
+xcopy /y /i "$(ProjectDir)..\Datasets\*.*" "$(ProjectDir)\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -136,6 +144,10 @@
       <AdditionalLibraryDirectories>..\..\VS\lib\x64;$(PlatformTarget)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>utils.lib;opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y /i "$(ProjectDir)..\Datasets\*.*" "$(OutDir)\"
+xcopy /y /i "$(ProjectDir)..\Datasets\*.*" "$(ProjectDir)\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -156,6 +168,10 @@
       <AdditionalLibraryDirectories>..\..\VS\lib\x64;$(PlatformTarget)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>utils.lib;opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y /i "$(ProjectDir)..\Datasets\*.*" "$(OutDir)\"
+xcopy /y /i "$(ProjectDir)..\Datasets\*.*" "$(ProjectDir)\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />
@@ -163,6 +179,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\JPEGCodec.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Datasets\helvetica_neue.bmp" />
+    <None Include="..\Datasets\helvetica_neue.pos" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

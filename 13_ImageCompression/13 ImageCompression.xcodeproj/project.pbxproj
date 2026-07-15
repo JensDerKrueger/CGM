@@ -10,7 +10,23 @@
 		120000000000000000000001 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000002 /* main.cpp */; };
 		120000000000000000000003 /* libUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 120000000000000000000004 /* libUtils.a */; };
 		120000000000000000000013 /* JPEGCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 120000000000000000000014 /* JPEGCodec.cpp */; };
+		120000000000000000000016 /* helvetica_neue.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 120000000000000000000018 /* helvetica_neue.bmp */; };
+		120000000000000000000017 /* helvetica_neue.pos in CopyFiles */ = {isa = PBXBuildFile; fileRef = 120000000000000000000019 /* helvetica_neue.pos */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		120000000000000000000020 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				120000000000000000000016 /* helvetica_neue.bmp in CopyFiles */,
+				120000000000000000000017 /* helvetica_neue.pos in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		120000000000000000000002 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -18,6 +34,8 @@
 		120000000000000000000005 /* 13 ImageCompression */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "13 ImageCompression"; sourceTree = BUILT_PRODUCTS_DIR; };
 		120000000000000000000014 /* JPEGCodec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JPEGCodec.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		120000000000000000000015 /* JPEGCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPEGCodec.h; sourceTree = "<group>"; };
+		120000000000000000000018 /* helvetica_neue.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = helvetica_neue.bmp; path = Datasets/helvetica_neue.bmp; sourceTree = "<group>"; };
+		120000000000000000000019 /* helvetica_neue.pos */ = {isa = PBXFileReference; lastKnownFileType = text; name = helvetica_neue.pos; path = Datasets/helvetica_neue.pos; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +56,7 @@
 				120000000000000000000002 /* main.cpp */,
 				120000000000000000000014 /* JPEGCodec.cpp */,
 				120000000000000000000015 /* JPEGCodec.h */,
+				120000000000000000000021 /* Datasets */,
 				120000000000000000000008 /* Frameworks */,
 				120000000000000000000009 /* Products */,
 			);
@@ -59,6 +78,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		120000000000000000000021 /* Datasets */ = {
+			isa = PBXGroup;
+			children = (
+				120000000000000000000018 /* helvetica_neue.bmp */,
+				120000000000000000000019 /* helvetica_neue.pos */,
+			);
+			name = Datasets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -66,6 +94,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 12000000000000000000000B /* Build configuration list for PBXNativeTarget "13 ImageCompression" */;
 			buildPhases = (
+				120000000000000000000020 /* CopyFiles */,
 				12000000000000000000000C /* Sources */,
 				120000000000000000000006 /* Frameworks */,
 			);
@@ -190,6 +219,7 @@
 					/usr/local/lib,
 					/opt/homebrew/lib,
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				OTHER_LDFLAGS = (
 					"-lglfw",
 					"-lGLEW",
@@ -218,6 +248,7 @@
 					/usr/local/lib,
 					/opt/homebrew/lib,
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				OTHER_LDFLAGS = (
 					"-lglfw",
 					"-lGLEW",
@@ -233,20 +264,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		12000000000000000000000E /* Build configuration list for PBXProject "13 ImageCompression" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				12000000000000000000000F /* Debug */,
-				120000000000000000000010 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		12000000000000000000000B /* Build configuration list for PBXNativeTarget "13 ImageCompression" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				120000000000000000000011 /* Debug */,
 				120000000000000000000012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		12000000000000000000000E /* Build configuration list for PBXProject "13 ImageCompression" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12000000000000000000000F /* Debug */,
+				120000000000000000000010 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
